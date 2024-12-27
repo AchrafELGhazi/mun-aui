@@ -53,7 +53,7 @@ const Footer = () => {
         <FooterSection>
           <FooterTitle>Contact Us</FooterTitle>
           <FooterText>
-            Email: <FooterLink href="mailto:info@munaui.org">info@munaui.org</FooterLink>
+            Email: <FooterLink href="mailto:modelun@aui.ma">modelun@aui.ma</FooterLink>
             <br />
             Phone: +212 5355-86000
           </FooterText>

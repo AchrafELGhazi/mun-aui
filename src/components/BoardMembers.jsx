@@ -59,10 +59,10 @@ const BoardMembers = () => {
   });
 
   const members = [
-    { name: 'Sarah Johnson', position: 'President', image: '/member1.jpg' },
-    { name: 'Ahmed Hassan', position: 'Vice President', image: '/member2.jpg' },
-    { name: 'Fatima El Amrani', position: 'Secretary General', image: '/member3.jpg' },
-    { name: 'Youssef Benali', position: 'Treasurer', image: '/member4.jpg' },
+    { name: 'Nour Laghzal', position: 'President', image: '/pr.JPG' },
+    { name: 'Yasmine Abendag', position: 'Vice President', image: '/vp.jpg' },
+    { name: 'Meryem Bourichi', position: 'Secretary General', image: '/gs.jpg' },
+    { name: 'Youssef El Fadil', position: 'Treasurer', image: '/tr.jpg' },
   ];
 
   return (
