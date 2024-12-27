@@ -74,13 +74,13 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="min-h-screen relative flex items-center bg-white overflow-hidden px-4 py-8">
+    <section className="min-h-screen relative flex items-center overflow-hidden px-4 py-8">
       <canvas
         ref={canvasRef}
-        className="absolute top-0 left-0 w-full h-full z-10"
+        className="fixed top-0 left-0 w-full h-full z-0"
       />
       
-      <div className="container mx-auto max-w-10xl z-20">
+      <div className="container mx-auto max-w-10xl relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Left Content */}
           <motion.div 
@@ -90,28 +90,29 @@ const HeroSection = () => {
             transition={{ duration: 0.8 }}
           >
             <motion.h1 
-              className="text-5xl md:text-6xl text-green-700 font-bold mb-2"
+              className="text-5xl md:text-6xl text-[#1a5632] font-bold mb-2"
             >
               Welcome to,
             </motion.h1>
             
-            <div className="text-3xl md:text-4xl text-gray-800 font-medium mb-8">
+            <div className="text-3xl md:text-4xl text-gray-800 font-medium mb-8 typewriter-text">
               <Typewriter
                 options={{
-                  strings: ['Al Akhawayn University Model United Nations'],
+                  strings: ['Al Akhawayn University MUNAUI'],
                   autoStart: true,
                   loop: true,
                   delay: 50,
                   deleteSpeed: 30,
                   pauseFor: 2000,
+                  cursorClassName: "text-green-700",
                 }}
               />
             </div>
 
             <motion.p 
-              className="text-lg text-gray-600 leading-relaxed mb-8 max-w-12xl"
+              className="text-lg text-gray-600 leading-relaxed mb-8 max-w-6xl"
             >
-              At AUMMUN, we foster a deep understanding of global issues and diplomacy. 
+              At<strong> AUMMUN</strong>, we foster a deep understanding of global issues and diplomacy. 
               As a student-led organization, we provide enriching experiences simulating 
               United Nations operations, enabling participants to engage in international 
               discussions, debates, and decision-making.
@@ -151,6 +152,11 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
+      <style jsx>{`
+        .typewriter-text strong {
+          font-weight: 700;
+        }
+      `}</style>
     </section>
   );
 };

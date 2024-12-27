@@ -1,129 +1,142 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-const EventsContainer = styled.section`
-  padding: 4rem 2rem;
-  background-color: #f9f9f9;
-  opacity: ${({ inView }) => (inView ? 1 : 0)};
-  transform: translateY(${({ inView }) => (inView ? '0' : '50px')});
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-`;
-
-const EventsTitle = styled.h2`
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #333333;
-  margin-bottom: 2rem;
-  text-align: center;
-`;
-
-const EventsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-`;
-
-const EventCard = styled.div`
-  background-color: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
-`;
-
-const EventImage = styled.img`
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-`;
-
-const EventContent = styled.div`
-  padding: 1.5rem;
-`;
-
-const EventName = styled.h3`
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #333333;
-  margin-bottom: 0.5rem;
-`;
-
-const EventDescription = styled.p`
-  font-size: 1rem;
-  color: #666666;
-  margin-bottom: 1rem;
-`;
-
-const ViewMoreButton = styled(Link)`
-  display: inline-block;
-  background-color: #4CAF50;
-  color: #ffffff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  font-weight: 500;
-  transition: background-color 0.3s ease-in-out;
-
-  &:hover {
-    background-color: #45a049;
-  }
-`;
-
 const EventsPreview = () => {
-  const { ref, inView } = useInView({
+  const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
   });
+
+  const [hoveredEvent, setHoveredEvent] = useState(null);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
 
   const events = [
     {
       id: 1,
       name: 'Annual Conference',
-      description: 'Our flagship event bringing together delegates from around the world.',
-      image: '/event1.jpg',
+      description: 'Our flagship event bringing together delegates from around the world ffdf fvf.',
+      image: '/3.JPG',
+      color: 'from-blue-400 to-blue-600',
     },
     {
       id: 2,
       name: 'Workshop Series',
       description: 'Skill-building workshops on diplomacy, public speaking, and negotiation.',
-      image: '/event2.jpg',
+      image: '/4.jpg',
+      color: 'from-green-400 to-green-600',
     },
     {
       id: 3,
       name: 'Mock Debates',
       description: 'Practice sessions to hone your debating skills on current global issues.',
-      image: '/event3.jpg',
+      image: '/5.jpg',
+      color: 'from-yellow-400 to-yellow-600',
     },
     {
       id: 4,
       name: 'Guest Speaker Series',
       description: 'Insightful talks by diplomats, policymakers, and international experts.',
-      image: '/event4.jpg',
+      image: '/6.jpg',
+      color: 'from-purple-400 to-purple-600',
     },
   ];
 
   return (
-    <EventsContainer ref={ref} inView={inView}>
-      <EventsTitle>Our Events</EventsTitle>
-      <EventsGrid>
-        {events.map((event) => (
-          <EventCard key={event.id}>
-            <EventImage src={event.image} alt={event.name} />
-            <EventContent>
-              <EventName>{event.name}</EventName>
-              <EventDescription>{event.description}</EventDescription>
-              <ViewMoreButton to="/events">View More</ViewMoreButton>
-            </EventContent>
-          </EventCard>
-        ))}
-      </EventsGrid>
-    </EventsContainer>
+    <section ref={ref} className="py-20  text-white overflow-hidden">
+      <div className="container mx-auto px-4">
+        <motion.h2
+          className="text-4xl font-bold text-gray-700 text-center mb-16 relative"
+          initial={{ opacity: 0, y: -20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          transition={{ duration: 0.6 }}
+        >
+          Our Events
+          <motion.span
+            className="absolute -bottom-2 left-1/2 transform  w-24 h-1 bg-green-500"
+            initial={{ scaleX: 0 }}
+            animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          />
+        </motion.h2>
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
+          {events.map((event) => (
+            <motion.div
+              key={event.id}
+              className="relative group"
+              variants={itemVariants}
+              onMouseEnter={() => setHoveredEvent(event.id)}
+              onMouseLeave={() => setHoveredEvent(null)}
+            >
+              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${event.color} transform transition-all duration-300 group-hover:scale-105 group-hover:rotate-2`} />
+              <div className="relative bg-gray-800 rounded-2xl p-6 transform transition-all duration-300 group-hover:-translate-y-2 group-hover:-translate-x-2">
+                <img
+                  src={event.image}
+                  alt={event.name}
+                  className="w-full h-48 object-cover rounded-xl mb-4"
+                />
+                <h3 className="text-xl font-semibold mb-2">{event.name}</h3>
+                <p className="text-gray-300 mb-4">{event.description}</p>
+                <Link
+                  to="/events"
+                  className="inline-block px-4 py-2 bg-white text-gray-900 rounded-full font-semibold text-sm transition-colors duration-300 hover:bg-gray-200"
+                >
+                  Learn More
+                </Link>
+              </div>
+              <AnimatePresence>
+                {hoveredEvent === event.id && (
+                  <motion.div
+                    className="absolute inset-0 bg-black bg-opacity-50 rounded-2xl flex items-center justify-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <motion.span
+                      className="text-white text-2xl font-bold"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.8, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      Explore Event
+                    </motion.span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 };
 
