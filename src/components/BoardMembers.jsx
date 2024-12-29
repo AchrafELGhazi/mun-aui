@@ -39,7 +39,7 @@ const BoardMembers = () => {
 
   return (
     <section ref={ref} className="py-20  ">
-      <div className="absolute inset-0 bg-white/30 backdrop-blur-xl z-0"></div>
+      <div className="absolute inset-0  z-0"></div>
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className="text-4xl font-bold text-center mb-16 text-gray-800 relative"
