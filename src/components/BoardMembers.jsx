@@ -25,7 +25,7 @@ const BoardMembers = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: 'easeOut',
       },
     },
   };
@@ -33,68 +33,76 @@ const BoardMembers = () => {
   const members = [
     { name: 'Nour Laghzal', position: 'President', image: '/pr.JPG' },
     { name: 'Yasmine Abendag', position: 'Vice President', image: '/vp.jpg' },
-    { name: 'Meryem Bourichi', position: 'Secretary General', image: '/gs.jpg' },
+    {
+      name: 'Meryem Bourichi',
+      position: 'Secretary General',
+      image: '/gs.jpg',
+    },
     { name: 'Youssef El Fadil', position: 'Treasurer', image: '/tr.jpg' },
   ];
 
   return (
-    <section ref={ref} className="py-20  ">
-      <div className="absolute inset-0  z-0"></div>
-      <div className="container mx-auto px-4 relative z-10">
+    <section ref={ref} className='py-12 sm:py-16 md:py-20 '>
+      <div className='container mx-auto px-4 relative z-10'>
         <motion.h2
-          className="text-4xl font-bold text-center mb-16 text-gray-800 relative"
+          className='text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-gray-800 relative'
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.6 }}
         >
           Our Board Members
-          <motion.span
-            className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-green-500"
-            initial={{ scaleX: 0 }}
-            animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+          <motion.div
+            className='absolute -bottom-2 left-1/4 transform -translate-x-1/2 w-48 sm:w-64 md:w-80 h-1 bg-gradient-to-r from-transparent via-green-700 to-transparent'
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={
+              inView ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }
+            }
+            transition={{ duration: 0.8, delay: 0.3 }}
           />
         </motion.h2>
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8'
           variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          initial='hidden'
+          animate={inView ? 'visible' : 'hidden'}
         >
           {members.map((member, index) => (
             <motion.div
               key={member.name}
-              className="relative group"
+              className='relative group'
               variants={itemVariants}
             >
-              <div className="absolute inset-0 bg-white/40 backdrop-blur-md rounded-2xl transform transition-all duration-300 group-hover:scale-105 group-hover:rotate-2"></div>
-              <div className="relative bg-white/70 rounded-2xl p-6 shadow-xl transform transition-all duration-300 group-hover:-translate-y-2 group-hover:-translate-x-2">
-                <div className="relative mb-6 overflow-hidden rounded-full w-40 h-40 mx-auto">
+              <div className='absolute inset-0 bg-white/40 backdrop-blur-md rounded-lg sm:rounded-xl md:rounded-2xl transform transition-all duration-300 group-hover:scale-105 group-hover:rotate-2'></div>
+              <div className='relative bg-white/70 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-md sm:shadow-lg md:shadow-xl transform transition-all duration-300 group-hover:-translate-y-1 sm:group-hover:-translate-y-2 group-hover:-translate-x-1 sm:group-hover:-translate-x-2'>
+                <div className='relative mb-3 sm:mb-4 md:mb-6 overflow-hidden rounded-full w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto'>
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-110'
                   />
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-700/80 to-green-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className='absolute inset-0 bg-gradient-to-br from-green-700/80 to-green-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">{member.name}</h3>
-                <p className="text-green-700 font-medium">{member.position}</p>
+                <h3 className='text-base sm:text-lg md:text-xl font-semibold text-gray-800 mb-1 sm:mb-2'>
+                  {member.name}
+                </h3>
+                <p className='text-sm sm:text-base text-green-700 font-medium'>
+                  {member.position}
+                </p>
                 <motion.div
-                  className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className='mt-2 sm:mt-3 md:mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300'
                   initial={{ scale: 0.8 }}
                   animate={inView ? { scale: 1 } : { scale: 0.8 }}
                   transition={{ duration: 0.3, delay: 0.1 * index }}
                 >
-                  
+                  {/* Additional content can be added here if needed */}
                 </motion.div>
               </div>
             </motion.div>
           ))}
         </motion.div>
       </div>
-     </section>
+    </section>
   );
 };
 
 export default BoardMembers;
-
