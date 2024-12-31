@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('/');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,10 +25,42 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  const scrollToSection = sectionId => {
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: sectionId } });
+      return;
+    }
+
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveLink(`#${sectionId}`);
+      closeMenu();
+    }
+  };
+
+  const handleHomeClick = () => {
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+    }
+    setActiveLink('/');
+    closeMenu();
+  };
+
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Events', path: '/events' },
-    { name: 'Board Members', path: '/board-members' },
+    { name: 'Home', path: '/', action: handleHomeClick },
+    {
+      name: 'Events',
+      path: '#events',
+      action: () => scrollToSection('events'),
+    },
+    {
+      name: 'Board Members',
+      path: '#board-members',
+      action: () => scrollToSection('board-members'),
+    },
   ];
 
   return (
@@ -43,7 +77,7 @@ const Header = () => {
         <div className='flex items-center justify-between md:gap-6'>
           {/* Logo - Left Edge */}
           <div className='flex-shrink-0'>
-            <Link to='/'>
+            <Link to='/' onClick={handleHomeClick}>
               <img
                 src='/mun1.png'
                 alt='MUN AUI Logo'
@@ -79,10 +113,9 @@ const Header = () => {
             <nav className='flex items-center'>
               <div className='flex gap-1.5 bg-black/5 p-1.5 rounded-2xl'>
                 {navItems.map(item => (
-                  <Link
+                  <button
                     key={item.name}
-                    to={item.path}
-                    onClick={() => setActiveLink(item.path)}
+                    onClick={item.action}
                     className={`px-5 py-2.5 rounded-xl transition-all duration-300 relative
                       font-medium text-sm whitespace-nowrap
                       ${
@@ -92,7 +125,7 @@ const Header = () => {
                       }`}
                   >
                     {item.name}
-                  </Link>
+                  </button>
                 ))}
               </div>
             </nav>
@@ -155,14 +188,13 @@ const Header = () => {
               <ul className='flex flex-col p-4'>
                 {navItems.map(item => (
                   <li key={item.name} className='mb-4'>
-                    <Link
-                      to={item.path}
+                    <button
                       onClick={() => {
-                        setActiveLink(item.path);
+                        item.action();
                         closeMenu();
                       }}
-                      className={`block px-4 py-2 rounded-xl transition-all duration-300
-                        font-medium text-lg
+                      className={`block w-full px-4 py-2 rounded-xl transition-all duration-300
+                        font-medium text-lg text-left
                         ${
                           activeLink === item.path
                             ? 'text-white bg-black'
@@ -170,7 +202,7 @@ const Header = () => {
                         }`}
                     >
                       {item.name}
-                    </Link>
+                    </button>
                   </li>
                 ))}
               </ul>
