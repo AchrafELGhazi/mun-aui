@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { FaCalendarAlt, FaMapMarkerAlt, FaUsers } from 'react-icons/fa';
 
 const EventsPreview = () => {
   const [ref, inView] = useInView({
@@ -38,9 +39,12 @@ const EventsPreview = () => {
       id: 1,
       name: 'Annual Conference',
       description:
-        'Our flagship event bringing together delegates from around the world ffdf fvf.',
+        'Our flagship event bringing together delegates from around the world.',
       image: '/3.JPG',
       color: 'from-blue-400 to-blue-600',
+      date: 'October 15-17, 2023',
+      location: 'Al Akhawayn University, Ifrane',
+      participants: '500+',
     },
     {
       id: 2,
@@ -49,6 +53,9 @@ const EventsPreview = () => {
         'Skill-building workshops on diplomacy, public speaking, and negotiation.',
       image: '/4.jpg',
       color: 'from-green-400 to-green-600',
+      date: 'Every Saturday, Sept-Nov 2023',
+      location: 'Online & On-campus',
+      participants: '100 per workshop',
     },
     {
       id: 3,
@@ -57,6 +64,9 @@ const EventsPreview = () => {
         'Practice sessions to hone your debating skills on current global issues.',
       image: '/5.jpg',
       color: 'from-yellow-400 to-yellow-600',
+      date: 'Monthly, 2023',
+      location: 'AUI Auditorium',
+      participants: '50-100 per session',
     },
     {
       id: 4,
@@ -65,28 +75,42 @@ const EventsPreview = () => {
         'Insightful talks by diplomats, policymakers, and international experts.',
       image: '/6.jpg',
       color: 'from-purple-400 to-purple-600',
+      date: 'Quarterly, 2023',
+      location: 'Various venues',
+      participants: '200-300 per event',
     },
   ];
 
   return (
-    <section ref={ref} className='py-20  text-white overflow-hidden'>
-      <div className='container mx-auto px-4'>
-        <motion.h2
-          className='text-4xl font-bold text-gray-700 text-center mb-16 relative'
-          initial={{ opacity: 0, y: -20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          transition={{ duration: 0.6 }}
-        >
-          Our Events
+    <section ref={ref} className='py-20 px-4 sm:px-6 lg:px-8  overflow-hidden'>
+      <div className='container mx-auto'>
+        <div className='flex flex-col items-center '>
+          <motion.h2
+            className='text-3xl sm:text-4xl font-bold text-gray-800 text-center mb-4'
+            initial={{ opacity: 0, y: -20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+            transition={{ duration: 0.6 }}
+          >
+            Our Events
+          </motion.h2>
           <motion.div
-            className='absolute -bottom-2 left-1/4 transform -translate-x-1/2 w-48 sm:w-64 md:w-80 h-1 bg-gradient-to-r from-transparent via-green-700 to-transparent'
+            className='w-24 h-1 bg-green-500 rounded-full mb-6'
             initial={{ scaleX: 0, opacity: 0 }}
             animate={
               inView ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }
             }
             transition={{ duration: 0.8, delay: 0.3 }}
           />
-        </motion.h2>
+          <motion.p
+            className='text-center text-gray-600 max-w-2xl mb-7'
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Join us for a variety of engaging events designed to enhance your
+            understanding of global diplomacy and international relations.
+          </motion.p>
+        </div>
         <motion.div
           className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'
           variants={containerVariants}
@@ -104,17 +128,35 @@ const EventsPreview = () => {
               <div
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${event.color} transform transition-all duration-300 group-hover:scale-105 group-hover:rotate-2`}
               />
-              <div className='relative bg-gray-800 rounded-2xl p-6 transform transition-all duration-300 group-hover:-translate-y-2 group-hover:-translate-x-2'>
+              <div className='relative bg-white rounded-2xl p-6 shadow-xl transform transition-all duration-300 group-hover:-translate-y-2 group-hover:-translate-x-2 flex flex-col h-full'>
                 <img
                   src={event.image}
                   alt={event.name}
                   className='w-full h-48 object-cover rounded-xl mb-4'
                 />
-                <h3 className='text-xl font-semibold mb-2'>{event.name}</h3>
-                <p className='text-gray-300 mb-4'>{event.description}</p>
+                <h3 className='text-xl font-semibold text-gray-800 mb-2'>
+                  {event.name}
+                </h3>
+                <p className='text-gray-600 mb-4 flex-grow'>
+                  {event.description}
+                </p>
+                <div className='space-y-2 mb-4'>
+                  <div className='flex items-center text-sm text-gray-500'>
+                    <FaCalendarAlt className='mr-2' />
+                    {event.date}
+                  </div>
+                  <div className='flex items-center text-sm text-gray-500'>
+                    <FaMapMarkerAlt className='mr-2' />
+                    {event.location}
+                  </div>
+                  <div className='flex items-center text-sm text-gray-500'>
+                    <FaUsers className='mr-2' />
+                    {event.participants} participants
+                  </div>
+                </div>
                 <Link
                   to='/events'
-                  className='inline-block px-4 py-2 bg-white text-gray-900 rounded-full font-semibold text-sm transition-colors duration-300 hover:bg-gray-200'
+                  className='inline-block px-4 py-2 bg-[#1a5632] text-white rounded-full font-semibold text-sm transition-colors duration-300 hover:bg-green-600 text-center'
                 >
                   Learn More
                 </Link>
@@ -143,6 +185,12 @@ const EventsPreview = () => {
             </motion.div>
           ))}
         </motion.div>
+        <motion.div
+          className='text-center mt-12'
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        ></motion.div>
       </div>
     </section>
   );

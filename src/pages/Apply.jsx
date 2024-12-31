@@ -150,7 +150,7 @@ const Apply = () => {
   };
 
   return (
-    <div className='min-h-screen bg-gray-100 py-12 px-4 -mt-16 sm:px-6 lg:mt-10 lg:px-8 flex items-center'>
+    <div className='min-h-screen bg-white py-12 px-4 -mt-16 sm:px-6 lg:mt-10 lg:px-8 flex items-center'>
       <div className='max-w-md w-full space-y-8 bg-white p-6 sm:p-10 rounded-xl shadow-2xl mx-auto'>
         <motion.div
           initial={{ opacity: 0, y: -20 }}

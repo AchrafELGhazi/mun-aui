@@ -49,7 +49,7 @@ const Footer = () => {
       animate={inView ? 'visible' : 'hidden'}
       variants={containerVariants}
     >
-      <div className='absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent' />
+      <div className='absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#1a5632] to-transparent' />
       <div className='max-w-7xl mx-auto'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
           <motion.div variants={itemVariants}>
@@ -67,7 +67,7 @@ const Footer = () => {
               Quick Links
             </h3>
             <ul className='space-y-2'>
-              {['About Us', 'Apply', 'Join',].map(item => (
+              {['About Us', 'Apply', 'Join'].map(item => (
                 <li key={item}>
                   <a
                     href={`/${item.toLowerCase().replace(' ', '-')}`}
