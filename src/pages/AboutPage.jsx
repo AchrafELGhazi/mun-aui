@@ -20,7 +20,7 @@ const AboutPage = () => {
           Back to Home
         </Link>
 
-        <h1 className='text-4xl sm:text-4xl font-bold text-gray-800 mb-8'>
+        <h1 className='text-3xl sm:text-4xl font-bold text-gray-800 mb-8'>
           Empowering Future Global Leaders
         </h1>
 

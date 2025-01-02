@@ -58,6 +58,7 @@ const AboutSection = () => {
                 {/* Added wrapper div with flex and justify classes */}
                 <Link
                   to='/AboutPage'
+                  onClick={() => window.scrollTo(0, 0)}
                   className='inline-block px-6 py-3 bg-green-700 text-white rounded-full font-semibold text-sm sm:text-lg shadow-lg hover:bg-green-800 transition-all duration-300 transform hover:scale-105 relative z-20'
                 >
                   Discover Our Mission

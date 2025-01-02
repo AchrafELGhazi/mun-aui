@@ -65,6 +65,7 @@ const HeroSection = () => {
 
               <Link
                 to='/Apply'
+                onClick={()=>window.scrollTo(0, 0)}
                 className='px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold text-green-700 
       text-base sm:text-lg border-2 border-green-700 hover:bg-green-50 
       transition-all duration-300 transform hover:scale-105 text-center'

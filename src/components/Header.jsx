@@ -135,6 +135,9 @@ const Header = () => {
           <div className='hidden md:flex gap-3 flex-shrink-0 mr-2'>
             <Link
               to='/apply'
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className={`px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap
                 bg-black text-white hover:bg-black/90
                 transition-all duration-300 hover:scale-105 hover:shadow-lg
@@ -144,6 +147,9 @@ const Header = () => {
             </Link>
             <Link
               to='/join'
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className={`px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap
                 bg-black/10 hover:bg-black/15
                 transition-all duration-300 hover:scale-105
@@ -210,7 +216,10 @@ const Header = () => {
             <div className='bg-white p-4 border-t'>
               <Link
                 to='/apply'
-                onClick={closeMenu}
+                onClick={() => {
+                  closeMenu();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
                 className='block w-full px-5 py-2.5 rounded-xl font-medium text-lg text-center
                   bg-black text-white hover:bg-black/90
                   transition-all duration-300 mb-4'
@@ -219,7 +228,10 @@ const Header = () => {
               </Link>
               <Link
                 to='/join'
-                onClick={closeMenu}
+                onClick={() => {
+                  closeMenu();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
                 className='block w-full px-5 py-2.5 rounded-xl font-medium text-lg text-center
                   bg-black/10 hover:bg-black/15
                   transition-all duration-300'
