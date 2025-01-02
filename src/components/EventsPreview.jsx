@@ -1,38 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { FaCalendarAlt, FaMapMarkerAlt, FaUsers } from 'react-icons/fa';
 
 const EventsPreview = () => {
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
   const [hoveredEvent, setHoveredEvent] = useState(null);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
-  };
 
   const events = [
     {
@@ -82,46 +53,23 @@ const EventsPreview = () => {
   ];
 
   return (
-    <section ref={ref} className='py-20 px-4 sm:px-6 lg:px-8  overflow-hidden'>
+    <section className='py-20 px-4 sm:px-6 lg:px-8 overflow-hidden'>
       <div className='container mx-auto'>
-        <div className='flex flex-col items-center '>
-          <motion.h2
-            className='text-3xl sm:text-4xl font-bold text-gray-800 text-center mb-4'
-            initial={{ opacity: 0, y: -20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-            transition={{ duration: 0.6 }}
-          >
+        <div className='flex flex-col items-center'>
+          <h2 className='text-3xl sm:text-4xl font-bold text-gray-800 text-center mb-4'>
             Our Events
-          </motion.h2>
-          <motion.div
-            className='w-24 h-1 bg-green-500 rounded-full mb-6'
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={
-              inView ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }
-            }
-            transition={{ duration: 0.8, delay: 0.3 }}
-          />
-          <motion.p
-            className='text-center text-gray-600 max-w-2xl mb-7'
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          </h2>
+          <div className='w-24 h-1 bg-green-500 rounded-full mb-6' />
+          <p className='text-center text-gray-600 max-w-2xl mb-7'>
             Join us for a variety of engaging events designed to enhance your
             understanding of global diplomacy and international relations.
-          </motion.p>
+          </p>
         </div>
-        <motion.div
-          className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'
-          variants={containerVariants}
-          initial='hidden'
-          animate={inView ? 'visible' : 'hidden'}
-        >
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
           {events.map(event => (
-            <motion.div
+            <div
               key={event.id}
               className='relative group'
-              variants={itemVariants}
               onMouseEnter={() => setHoveredEvent(event.id)}
               onMouseLeave={() => setHoveredEvent(null)}
             >
@@ -161,36 +109,17 @@ const EventsPreview = () => {
                   Learn More
                 </Link>
               </div>
-              <AnimatePresence>
-                {hoveredEvent === event.id && (
-                  <motion.div
-                    className='absolute inset-0 bg-black bg-opacity-50 rounded-2xl flex items-center justify-center'
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <motion.div
-                      className='text-white text-2xl font-bold'
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.8, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      Explore Event
-                    </motion.div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+              {hoveredEvent === event.id && (
+                <div className='absolute inset-0 bg-black bg-opacity-50 rounded-2xl flex items-center justify-center'>
+                  <div className='text-white text-2xl font-bold'>
+                    Explore Event
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
-        </motion.div>
-        <motion.div
-          className='text-center mt-12'
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        ></motion.div>
+        </div>
+        <div className='text-center mt-12'></div>
       </div>
     </section>
   );
