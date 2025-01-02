@@ -34,6 +34,8 @@ const AboutSection = () => {
     },
   ];
 
+  
+
   return (
     <section className='py-20 -mt-24 -lg:mt-24 -sm:mt-24 sm:py-32 mx-3 lg:mx-10'>
       <div className='bg-white  rounded-3xl shadow-[0_0_50px_0_rgba(0,0,0,0.1)] p-8 sm:p-12'>

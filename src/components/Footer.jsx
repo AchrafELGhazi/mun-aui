@@ -9,6 +9,7 @@ import {
   FaPhone,
   FaMapMarkerAlt,
 } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const [ref, inView] = useInView({
@@ -41,6 +42,19 @@ const Footer = () => {
     },
   };
 
+  // const scrollToSection = sectionId => {
+  //   if (location.pathname !== '/') {
+  //     navigate('/', { state: { scrollTo: sectionId } });
+  //     return;
+  //   }
+
+  //   const element = document.getElementById(sectionId);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
+
+
   return (
     <motion.footer
       ref={ref}
@@ -67,14 +81,21 @@ const Footer = () => {
               Quick Links
             </h3>
             <ul className='space-y-2'>
-              {['About Us', 'Apply', 'Join'].map(item => (
-                <li key={item}>
-                  <a
-                    href={`/${item.toLowerCase().replace(' ', '-')}`}
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'Apply', path: '/Apply' },
+                { name: 'Join', path: '/Join' },
+              ].map(item => (
+                <li key={item.name}>
+                  <Link
+                    to={item.path}
                     className='text-gray-600 hover:text-green-700 transition-colors duration-300'
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
                   >
-                    {item}
-                  </a>
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>

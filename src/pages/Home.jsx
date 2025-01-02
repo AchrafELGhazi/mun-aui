@@ -129,7 +129,9 @@ const Home = () => {
       />
       <div className='relative z-10'>
         <HeroSection />
-        <AboutSection />
+        <div id='about'>
+          <AboutSection />
+        </div>
         <div id='events'>
           <EventsPreview />
         </div>
