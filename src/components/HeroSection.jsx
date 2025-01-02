@@ -168,7 +168,7 @@ const HeroSection = () => {
           >
             <div className='rounded-2xl overflow-hidden shadow-xl'>
               <img
-                src='/1.JPG'
+                src='/1.jpg'
                 alt='MUN Conference'
                 className='w-full h-auto object-cover'
               />

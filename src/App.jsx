@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
-import Home from './pages/Home';
-import Apply from './pages/Apply';
 import Footer from './components/Footer';
-import Join from './pages/Join';
+
+// Lazy load the pages
+const Home = lazy(() => import('./pages/Home'));
+const Apply = lazy(() => import('./pages/Apply'));
+const Join = lazy(() => import('./pages/Join'));
 
 const App = () => {
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/apply' element={<Apply />} />
-        <Route path='/join' element={<Join />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/apply' element={<Apply />} />
+          <Route path='/join' element={<Join />} />
+        </Routes>
+      </Suspense>
       <Footer />
     </Router>
   );

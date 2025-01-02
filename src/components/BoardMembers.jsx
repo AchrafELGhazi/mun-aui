@@ -34,7 +34,7 @@ const BoardMembers = () => {
     {
       name: 'Nour Laghzal',
       position: 'President',
-      image: '/pr.JPG',
+      image: '/pr.jpg',
       quote: 'Leading with vision and purpose.',
     },
     {

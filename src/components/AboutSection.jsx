@@ -76,7 +76,7 @@ const AboutSection = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             ></motion.div>
             <motion.img
-              src='/2.JPG'
+              src='/2.jpg'
               alt='MUN AUI participants in action'
               className='rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg sm:shadow-xl md:shadow-2xl relative z-10 transform -rotate-3 transition-transform duration-300 hover:rotate-0 w-full h-auto'
               initial={{ opacity: 0, scale: 0.8 }}
