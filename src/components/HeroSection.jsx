@@ -82,7 +82,7 @@ const HeroSection = () => {
             <div className='rounded-2xl overflow-hidden shadow-xl max-w-md mx-auto'>
               {/* Added max-w-md and mx-auto for mobile centering */}
               <img
-                src='/1.jpg'
+                src='1.jpg'
                 alt='MUN Conference'
                 className='w-full h-auto object-cover'
               />
