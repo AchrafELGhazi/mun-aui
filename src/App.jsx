@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Apply from './pages/Apply';
 import Join from './pages/Join';
+import AboutPage from './pages/AboutPage';
 
 // Lazy load the pages
 // const Home = lazy(() => import('./pages/Home'));
@@ -16,11 +17,12 @@ const App = () => {
     <Router>
       <Header />
       {/* <Suspense fallback={<div>Loading...</div>}> */}
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/apply' element={<Apply />} />
-          <Route path='/join' element={<Join />} />
-        </Routes>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/apply' element={<Apply />} />
+        <Route path='/join' element={<Join />} />
+        <Route path='/AboutPage' element={<AboutPage />} />
+      </Routes>
       {/* </Suspense> */}
       <Footer />
     </Router>

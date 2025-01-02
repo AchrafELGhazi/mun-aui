@@ -79,7 +79,7 @@ const BoardMembers = () => {
             individuals!
           </p>
           <a
-            href='/join'
+            href='/Join'
             className='inline-block bg-[#1a5632] text-white font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-full hover:bg-green-600 transition-colors duration-300 text-sm sm:text-base'
           >
             Join MUN AUI

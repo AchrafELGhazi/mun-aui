@@ -53,7 +53,7 @@ const EventsPreview = () => {
   ];
 
   return (
-    <section className='py-20 px-4 sm:px-6 lg:px-8 overflow-hidden'>
+    <section className='py-20 px-4 sm:px-6 lg:px-8 -mt-16 -mb-24 overflow-hidden'>
       <div className='container mx-auto'>
         <div className='flex flex-col items-center'>
           <h2 className='text-3xl sm:text-4xl font-bold text-gray-800 text-center mb-4'>
