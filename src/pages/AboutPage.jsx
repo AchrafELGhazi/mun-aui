@@ -20,18 +20,18 @@ const AboutPage = () => {
           Back to Home
         </Link>
 
-        <h1 className='text-4xl sm:text-5xl font-bold text-gray-800 mb-8'>
+        <h1 className='text-4xl sm:text-4xl font-bold text-gray-800 mb-8'>
           Empowering Future Global Leaders
         </h1>
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-12'>
           <img
-            src='/mun1.jpg'
+            src='/aa.jpg'
             alt='MUN Conference'
             className='rounded-2xl shadow-xl w-full h-64 object-cover'
           />
           <img
-            src='/mun2.jpg'
+            src='/bb.jpg'
             alt='Delegates in session'
             className='rounded-2xl shadow-xl w-full h-64 object-cover'
           />
@@ -80,8 +80,9 @@ const AboutPage = () => {
 
         <div className='text-center'>
           <Link
-            to='/apply'
-            className='inline-block px-8 py-4 bg-green-600 text-white rounded-full font-semibold text-lg transition-all duration-300 hover:bg-green-700 hover:scale-105 shadow-lg'
+            to='/Apply'
+            onClick={() => window.scrollTo(0, 0)}
+            className='inline-block px-8 py-4 bg-green-700 text-white rounded-full font-semibold text-lg transition-all duration-300 hover:bg-green-700 hover:scale-105 shadow-lg'
           >
             Apply Now
           </Link>
