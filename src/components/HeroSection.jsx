@@ -72,7 +72,7 @@ const HeroSection = () => {
       });
 
       const maxDistance =
-        windowWidth < 640 ? 120 : windowWidth < 1024 ? 220 : 220;
+        windowWidth < 640 ? 110 : windowWidth < 1024 ? 200 : 200;
 
       particles.forEach((particle1, i) => {
         particles.slice(i + 1).forEach(particle2 => {
