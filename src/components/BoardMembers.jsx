@@ -5,7 +5,7 @@ const BoardMembers = () => {
     {
       name: 'Nour Laghzal',
       position: 'President',
-      image: '/pr.jpg',
+      image: '/prrr.jpg',
       quote: 'Leading with vision and purpose.',
     },
     {

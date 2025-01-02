@@ -11,7 +11,7 @@ const EventsPreview = () => {
       name: 'Annual Conference',
       description:
         'Our flagship event bringing together delegates from around the world.',
-      image: '/3.jpg',
+      image: '/33.jpg',
       color: 'from-blue-400 to-blue-600',
       date: 'October 15-17, 2023',
       location: 'Al Akhawayn University, Ifrane',
