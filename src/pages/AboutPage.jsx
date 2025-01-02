@@ -82,7 +82,7 @@ const AboutPage = () => {
           <Link
             to='/Apply'
             onClick={() => window.scrollTo(0, 0)}
-            className='inline-block px-8 py-4 bg-green-700 text-white rounded-full font-semibold text-lg transition-all duration-300 hover:bg-green-700 hover:scale-105 shadow-lg'
+            className='inline-block px-7 py-3 bg-green-700 text-white rounded-full font-semibold text-md transition-all duration-300 hover:bg-green-700 hover:scale-105 shadow-lg'
           >
             Apply Now
           </Link>
