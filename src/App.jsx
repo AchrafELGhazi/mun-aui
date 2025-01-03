@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Apply from './pages/Apply';
 import Join from './pages/Join';
 import AboutPage from './pages/AboutPage';
+import EventDetails from './pages/EventDetails';
 
 // Lazy load the pages
 // const Home = lazy(() => import('./pages/Home'));
@@ -22,6 +23,7 @@ const App = () => {
         <Route path='/apply' element={<Apply />} />
         <Route path='/join' element={<Join />} />
         <Route path='/AboutPage' element={<AboutPage />} />
+        <Route path='/EventDetails/:id' element={<EventDetails />} />
       </Routes>
       {/* </Suspense> */}
       <Footer />

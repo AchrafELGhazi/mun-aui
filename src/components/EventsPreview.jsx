@@ -1,57 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaCalendarAlt, FaMapMarkerAlt, FaUsers } from 'react-icons/fa';
+import { events } from './Events';
 
 const EventsPreview = () => {
-  const [hoveredEvent, setHoveredEvent] = useState(null);
 
-  const events = [
-    {
-      id: 1,
-      name: 'Annual Conference',
-      description:
-        'Our flagship event bringing together delegates from around the world.',
-      image: '/33.jpg',
-      color: 'from-blue-400 to-blue-600',
-      date: 'October 15-17, 2023',
-      location: 'Al Akhawayn University, Ifrane',
-      participants: '500+',
-    },
-    {
-      id: 2,
-      name: 'Workshop Series',
-      description:
-        'Skill-building workshops on diplomacy, public speaking, and negotiation.',
-      image: '/4.jpg',
-      color: 'from-green-400 to-green-600',
-      date: 'Every Saturday, Sept-Nov 2023',
-      location: 'Online & On-campus',
-      participants: '100 per workshop',
-    },
-    {
-      id: 3,
-      name: 'Mock Debates',
-      description:
-        'Practice sessions to hone your debating skills on current global issues.',
-      image: '/5.jpg',
-      color: 'from-yellow-400 to-yellow-600',
-      date: 'Monthly, 2023',
-      location: 'AUI Auditorium',
-      participants: '50-100 per session',
-    },
-    {
-      id: 4,
-      name: 'Guest Speaker Series',
-      description:
-        'Insightful talks by diplomats, policymakers, and international experts.',
-      image: '/6.jpg',
-      color: 'from-purple-400 to-purple-600',
-      date: 'Quarterly, 2023',
-      location: 'Various venues',
-      participants: '200-300 per event',
-    },
-  ];
-
+ 
   return (
     <section className='py-20 px-4 sm:px-6 lg:px-8 -mt-16 -mb-24 overflow-hidden'>
       <div className='container mx-auto'>
@@ -67,16 +21,8 @@ const EventsPreview = () => {
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
           {events.map(event => (
-            <div
-              key={event.id}
-              className='relative group'
-              onMouseEnter={() => setHoveredEvent(event.id)}
-              onMouseLeave={() => setHoveredEvent(null)}
-            >
-              <div
-                className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${event.color} transform transition-all duration-300 group-hover:scale-105 group-hover:rotate-2`}
-              />
-              <div className='relative bg-white rounded-2xl p-6 shadow-xl transform transition-all duration-300 group-hover:-translate-y-2 group-hover:-translate-x-2 flex flex-col h-full'>
+            <div key={event.id} className='relative group'>
+              <div className='relative bg-white rounded-2xl p-6 shadow-xl transform transition-all duration-300 flex flex-col h-full'>
                 <img
                   src={event.image}
                   alt={event.name}
@@ -103,19 +49,13 @@ const EventsPreview = () => {
                   </div>
                 </div>
                 <Link
-                  to='/events'
+                  to={`/EventDetails/${event.id}`}
+                  onClick={() => window.scrollTo(0, 0)}
                   className='inline-block px-4 py-2 bg-[#1a5632] text-white rounded-full font-semibold text-sm transition-colors duration-300 hover:bg-green-600 text-center'
                 >
                   Learn More
                 </Link>
               </div>
-              {hoveredEvent === event.id && (
-                <div className='absolute inset-0 bg-black bg-opacity-50 rounded-2xl flex items-center justify-center'>
-                  <div className='text-white text-2xl font-bold'>
-                    Explore Event
-                  </div>
-                </div>
-              )}
             </div>
           ))}
         </div>

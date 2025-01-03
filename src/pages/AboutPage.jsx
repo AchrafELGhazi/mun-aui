@@ -14,10 +14,11 @@ const AboutPage = () => {
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
         <Link
           to='/'
-          className='inline-flex cursor-pointer items-center text-green-700 hover:text-green-500 transition-colors duration-300 mb-8'
+          onClick={() => window.scrollTo(0, 0)}
+          className='group inline-flex items-center space-x-2 text-gray-600 hover:text-green-600 transition-colors duration-300 mb-8'
         >
-          <FaArrowLeft className='mr-2' />
-          Back to Home
+          <FaArrowLeft className='transition-transform group-hover:-translate-x-1' />
+          <span className='font-medium'>Back to Hone</span> 
         </Link>
 
         <h1 className='text-3xl sm:text-4xl font-bold text-gray-800 mb-8'>

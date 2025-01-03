@@ -1,6 +1,5 @@
 import Typewriter from 'typewriter-effect';
 import { Link } from 'react-router-dom';
-import myImage from '../../public/11.jpg';
 
 const HeroSection = () => {
   // const [scrolled, setScrolled] = useState(false);
@@ -76,15 +75,14 @@ const HeroSection = () => {
           </div>
 
           <div
-            className='w-full lg:w-2/5 mt-8 lg:mt-0 px-4 sm:px-8 lg:px-0' // Added padding for mobile
+            className='w-full lg:w-2/5 mt-8 lg:mt-0 px-4 sm:px-8 lg:px-0'
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className='rounded-2xl overflow-hidden shadow-xl max-w-md mx-auto'>
-              {/* Added max-w-md and mx-auto for mobile centering */}
               <img
-                src={myImage}
+                src='/11.jpg'
                 alt='MUN Conference'
                 className='w-full h-auto object-cover'
               />

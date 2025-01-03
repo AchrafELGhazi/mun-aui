@@ -8,7 +8,6 @@ import {
   FaChalkboardTeacher,
   FaUniversity,
 } from 'react-icons/fa';
-import myImage from '../../public/22.jpg';
 
 
 const AboutSection = () => {
@@ -68,7 +67,7 @@ const AboutSection = () => {
             <div className='w-full lg:w-1/2 relative mt-10 lg:mt-0'>
               <div className='absolute inset-0 bg-green-200 rounded-3xl transform rotate-3 scale-105'></div>
               <img
-                src={myImage}
+                src='/22.jpg'
                 alt='MUN AUI participants in action'
                 className='rounded-3xl shadow-2xl relative z-10 w-full h-auto transform -rotate-3 transition-transform duration-300 hover:rotate-0'
               />
@@ -81,7 +80,7 @@ const AboutSection = () => {
                 key={index}
                 className='flex flex-col items-center p-8 bg-white rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105'
               >
-                <stat.icon className='text-5xl text-green-600 mb-4' />
+                <stat.icon className='text-5xl text-green-700 mb-4' />
                 <span className='text-3xl font-bold text-gray-800 mb-2'>
                   {stat.value}
                 </span>
