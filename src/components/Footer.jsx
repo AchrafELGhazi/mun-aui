@@ -3,13 +3,14 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
   FaFacebookF,
-  FaTwitter,
   FaInstagram,
   FaEnvelope,
   FaPhone,
   FaMapMarkerAlt,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { FaLinkedinIn } from 'react-icons/fa6';
+import { SiThreads } from 'react-icons/si';
 
 const Footer = () => {
   const [ref, inView] = useInView({
@@ -41,19 +42,6 @@ const Footer = () => {
       },
     },
   };
-
-  // const scrollToSection = sectionId => {
-  //   if (location.pathname !== '/') {
-  //     navigate('/', { state: { scrollTo: sectionId } });
-  //     return;
-  //   }
-
-  //   const element = document.getElementById(sectionId);
-  //   if (element) {
-  //     element.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // };
-
 
   return (
     <motion.footer
@@ -144,18 +132,23 @@ const Footer = () => {
               {[
                 {
                   icon: FaFacebookF,
-                  href: 'https://facebook.com/munaui',
+                  href: 'https://www.facebook.com/AUIMUN/',
                   label: 'Facebook',
                 },
                 {
-                  icon: FaTwitter,
-                  href: 'https://twitter.com/munaui',
-                  label: 'Twitter',
+                  icon: SiThreads,
+                  href: 'https://www.threads.net/@aui_mun',
+                  label: 'Threads',
                 },
                 {
                   icon: FaInstagram,
-                  href: 'https://instagram.com/munaui',
+                  href: 'https://www.instagram.com/aui_mun/',
                   label: 'Instagram',
+                },
+                {
+                  icon: FaLinkedinIn,
+                  href: 'https://www.linkedin.com/company/auimun/posts/?feedView=all',
+                  label: 'LinkedIn',
                 },
               ].map(social => (
                 <a

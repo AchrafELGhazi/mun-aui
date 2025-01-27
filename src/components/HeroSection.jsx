@@ -42,11 +42,13 @@ const HeroSection = () => {
             </div>
 
             <p className='text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8 mx-auto lg:mx-0 max-w-2xl'>
-              At <strong>AUMMUN</strong>, we foster a deep understanding of
-              global issues and diplomacy. As a student-led organization, we
-              provide enriching experiences simulating United Nations
-              operations, enabling participants to engage in international
-              discussions, debates, and decision-making.
+              Founded in 2012, <strong>AUIMUN</strong> (Al Akhawayn University
+              Model United Nations) is proud to be the first MUN in Morocco and
+              a trailblazer in fostering diplomatic excellence. Over the years,
+              it has grown into one of the largest and most prestigious MUN
+              conferences in the country, bringing together passionate delegates
+              to debate global issues, develop leadership skills, and build
+              lasting connections. Join us in shaping the leaders of tomorrow!
             </p>
 
             <div className='flex flex-row gap-2 justify-center lg:justify-start'>
@@ -63,13 +65,13 @@ const HeroSection = () => {
               </button>
 
               <Link
-                to='/Apply'
-                onClick={()=>window.scrollTo(0, 0)}
+                to='/auimun-12th-edition'
+                onClick={() => window.scrollTo(0, 0)}
                 className='px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold text-green-700 
       text-base sm:text-lg border-2 border-green-700 hover:bg-green-50 
       transition-all duration-300 transform hover:scale-105 text-center'
               >
-                Register for Event
+                AUIMUN 12th edition conference
               </Link>
             </div>
           </div>

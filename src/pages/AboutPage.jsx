@@ -18,7 +18,7 @@ const AboutPage = () => {
           className='group inline-flex items-center space-x-2 text-gray-600 hover:text-green-600 transition-colors duration-300 mb-8'
         >
           <FaArrowLeft className='transition-transform group-hover:-translate-x-1' />
-          <span className='font-medium'>Back to Hone</span> 
+          <span className='font-medium'>Back to Home</span> 
         </Link>
 
         <h1 className='text-3xl sm:text-4xl font-bold text-gray-800 mb-8'>
@@ -81,11 +81,11 @@ const AboutPage = () => {
 
         <div className='text-center'>
           <Link
-            to='/Apply'
+            to='/Join'
             onClick={() => window.scrollTo(0, 0)}
             className='inline-block px-7 py-3 bg-green-700 text-white rounded-full font-semibold text-md transition-all duration-300 hover:bg-green-700 hover:scale-105 shadow-lg'
           >
-            Apply Now
+            Join Now
           </Link>
         </div>
       </div>

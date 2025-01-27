@@ -9,33 +9,37 @@ import {
   FaUniversity,
 } from 'react-icons/fa';
 
-
 const AboutSection = () => {
   const stats = [
     { icon: FaUsers, value: '500+', label: 'Participants' },
-    { icon: FaGlobe, value: '50+', label: 'Countries' },
-    { icon: FaHandshake, value: '20+', label: 'Partners' },
+    {
+      icon: FaGlobe,
+      value: '1500+',
+      label: 'Delegates trained in diplomacy and debate',
+    },
+    { icon: FaHandshake, value: '11+', label: 'Successful editions' },
   ];
 
   const features = [
     {
       icon: FaLightbulb,
-      title: 'Innovative Learning',
-      description: 'Experience cutting-edge educational methodologies',
+      title: 'Pioneers in MUN Excellence',
+      description:
+        'As the first Model United Nations in Morocco, AUIMUN has been shaping the MUN landscape since 2012 and organized over 11 successful editions.',
     },
     {
       icon: FaChalkboardTeacher,
-      title: 'Expert Guidance',
-      description: 'Learn from experienced diplomats and educators',
+      title: 'Global & Diverse Experience',
+      description:
+        'AUIMUN attracts delegates from over 30+ institutions, creating a truly international and dynamic environment. ',
     },
     {
       icon: FaUniversity,
-      title: 'Global Network',
-      description: 'Connect with students from around the world',
+      title: 'Academic & Professional Growth',
+      description:
+        'Through expert-led workshops and training sessions, participants develop critical skills in public speaking, negotiation, and research—valuable assets for any future career.',
     },
   ];
-
-  
 
   return (
     <section className='py-20 -mt-24 -lg:mt-24 -sm:mt-24 sm:py-32 mx-3 lg:mx-10'>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BoardHeads from './BoardHeads';
 
 const BoardMembers = () => {
   const members = [
@@ -31,7 +32,7 @@ const BoardMembers = () => {
 
   return (
     <section className='py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-10'>
-      <div className='container mx-auto relative z-10'>
+      <div className='container mx-auto relative z-10 flex flex-col items-center'>
         <div className='text-center mb-12 sm:mb-16'>
           <h2 className='text-3xl sm:text-4xl font-bold text-gray-800 mb-4'>
             Our Board Members
@@ -44,7 +45,7 @@ const BoardMembers = () => {
           </p>
         </div>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 justify-items-center w-full'>
           {members.map(member => (
             <div
               key={member.name}
@@ -54,7 +55,7 @@ const BoardMembers = () => {
               <div className='relative bg-white rounded-2xl p-4 sm:p-6 shadow-lg transform transition-all duration-300 group-hover:-translate-y-2 group-hover:-translate-x-2 flex flex-col h-full'>
                 <div className='relative mb-4 sm:mb-6 overflow-hidden rounded-full w-24 h-24 sm:w-32 sm:h-32 mx-auto'>
                   <img
-                    src={member.image}
+                    src={member.image || '/placeholder.svg'}
                     alt={member.name}
                     className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-110'
                   />
@@ -73,6 +74,8 @@ const BoardMembers = () => {
             </div>
           ))}
         </div>
+
+        <BoardHeads />
 
         <div className='mt-12 sm:mt-16 text-center'>
           <p className='text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 px-4 sm:px-0'>

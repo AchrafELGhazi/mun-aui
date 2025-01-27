@@ -7,6 +7,8 @@ import Apply from './pages/Apply';
 import Join from './pages/Join';
 import AboutPage from './pages/AboutPage';
 import EventDetails from './pages/EventDetails';
+import AUIMUN12thEdition from './pages/AUIMUN12thEdition';
+
 
 // Lazy load the pages
 // const Home = lazy(() => import('./pages/Home'));
@@ -24,6 +26,7 @@ const App = () => {
         <Route path='/join' element={<Join />} />
         <Route path='/AboutPage' element={<AboutPage />} />
         <Route path='/EventDetails/:id' element={<EventDetails />} />
+        <Route path='/auimun-12th-edition' element={<AUIMUN12thEdition />} />
       </Routes>
       {/* </Suspense> */}
       <Footer />
