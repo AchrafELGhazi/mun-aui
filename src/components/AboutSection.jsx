@@ -71,7 +71,7 @@ const AboutSection = () => {
             <div className='w-full lg:w-1/2 relative mt-10 lg:mt-0'>
               <div className='absolute inset-0 bg-green-200 rounded-3xl transform rotate-3 scale-105'></div>
               <img
-                src='/22.jpg'
+                src='/events/1-1.webp'
                 alt='MUN AUI participants in action'
                 className='rounded-3xl shadow-2xl relative z-10 w-full h-auto transform -rotate-3 transition-transform duration-300 hover:rotate-0'
               />

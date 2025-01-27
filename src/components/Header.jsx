@@ -68,7 +68,7 @@ const Header = () => {
       className={`fixed top-0 left-0 w-full transition-all duration-500 ease-out z-50 
       ${
         scrolled
-          ? 'bg-white/90 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.06)]'
+          ? 'bg-white/60 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.06)]'
           : 'bg-gray-50 backdrop-blur-sm'
       }
       md:top-8 md:left-1/2 md:-translate-x-1/2 md:w-[96%] md:max-w-7xl md:rounded-3xl md:border md:border-white`}
@@ -77,11 +77,20 @@ const Header = () => {
         <div className='flex items-center justify-between md:gap-6'>
           {/* Logo - Left Edge */}
           <div className='flex-shrink-0'>
-            <Link to='/' onClick={handleHomeClick}>
+            <Link
+              to='/'
+              onClick={handleHomeClick}
+              className='flex items-center space-x-1'
+            >
+              <img
+                src='/mun2.png'
+                alt='MUN AUI Logo'
+                className='h-8 w-auto transition-all duration-300 md:h-12 md:ml-1'
+              />
               <img
                 src='/mun1.png'
                 alt='MUN AUI Logo'
-                className='h-8 w-auto transition-all duration-300 md:h-12 md:ml-1'
+                className='h-8 w-auto transition-all duration-300 md:h-9 md:ml-1'
               />
             </Link>
           </div>
@@ -133,7 +142,7 @@ const Header = () => {
 
           {/* Action Items - Desktop */}
           <div className='hidden md:flex gap-3 flex-shrink-0 mr-2'>
-            <Link
+            {/* <Link
               to='/apply'
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -144,7 +153,7 @@ const Header = () => {
                 ${scrolled ? 'shadow-md' : 'shadow-sm'}`}
             >
               Apply
-            </Link>
+            </Link> */}
             <Link
               to='/join'
               onClick={() => {
@@ -155,7 +164,7 @@ const Header = () => {
                 transition-all duration-300 hover:scale-105
                 ${scrolled ? 'shadow-sm' : ''}`}
             >
-              Join
+              Join AUI MUN
             </Link>
           </div>
         </div>
@@ -214,7 +223,7 @@ const Header = () => {
               </ul>
             </nav>
             <div className='bg-white p-4 border-t'>
-              <Link
+              {/* <Link
                 to='/apply'
                 onClick={() => {
                   closeMenu();
@@ -225,7 +234,7 @@ const Header = () => {
                   transition-all duration-300 mb-4'
               >
                 Apply
-              </Link>
+              </Link> */}
               <Link
                 to='/join'
                 onClick={() => {
@@ -236,7 +245,7 @@ const Header = () => {
                   bg-black/10 hover:bg-black/15
                   transition-all duration-300'
               >
-                Join
+                Join AUI MUN
               </Link>
             </div>
           </div>

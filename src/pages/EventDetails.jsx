@@ -1,16 +1,64 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   FaCalendarAlt,
   FaMapMarkerAlt,
   FaUsers,
   FaArrowLeft,
+  FaChevronLeft,
+  FaChevronRight,
 } from 'react-icons/fa';
 import { events } from '../components/Events';
 
 const EventDetails = () => {
   const { id } = useParams();
-  const event = events.find(e => e.id === parseInt(id));
+  const event = events.find(e => e.id === Number.parseInt(id));
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isAutoSliding, setIsAutoSliding] = useState(true);
+
+  // Placeholder function to generate 5 images for each event
+  const generateEventImages = eventId => {
+    return [
+      `/events/${eventId}-1.webp`,
+      `/events/${eventId}-2.webp`,
+      `/events/${eventId}-3.webp`,
+      // `/events/event-${eventId}-4.jpg`,
+      // `/events/event-${eventId}-5.jpg`,
+    ];
+  };
+
+  const eventImages = generateEventImages(event.id);
+
+  const nextImage = () => {
+    setIsAutoSliding(false);
+    setCurrentImageIndex(prevIndex =>
+      prevIndex === eventImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setIsAutoSliding(false);
+    setCurrentImageIndex(prevIndex =>
+      prevIndex === 0 ? eventImages.length - 1 : prevIndex - 1
+    );
+  };
+
+
+  useEffect(() => {
+    let intervalId;
+    if (isAutoSliding) {
+      intervalId = setInterval(() => {
+        setCurrentImageIndex(prevIndex =>
+          prevIndex === eventImages.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 3000);
+    }
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [isAutoSliding, eventImages.length]);
 
   return (
     <div className='min-h-screen mt-16 bg-gradient-to-b from-white to-gray-50'>
@@ -24,17 +72,30 @@ const EventDetails = () => {
         </Link>
 
         <div className='bg-white rounded-xl sm:rounded-3xl shadow-lg overflow-hidden'>
-          {/* Hero Section - Adjusted height for mobile */}
+          {/* Hero Section with Image Carousel */}
           <div className='relative h-[40vh] sm:h-[60vh] max-h-[600px]'>
             <img
-              src={event.image}
-              alt={event.name}
+              src={eventImages[currentImageIndex] || '/placeholder.svg'}
+              alt={`${event.name} - Image ${currentImageIndex + 1}`}
               className='w-full h-full object-cover'
             />
             <div
               className={`absolute inset-0 bg-gradient-to-r ${event.color} opacity-70`}
             ></div>
             <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent'></div>
+            <button
+              onClick={prevImage}
+              className='absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors'
+            >
+              <FaChevronLeft />
+            </button>
+            <button
+              onClick={nextImage}
+              className='absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors'
+            >
+              <FaChevronRight />
+            </button>
+           
             <div className='absolute bottom-0 left-0 right-0 p-4 sm:p-8 lg:p-12'>
               <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-4'>
                 {event.name}
@@ -154,6 +215,42 @@ const EventDetails = () => {
                           <span className='w-1.5 sm:w-2 h-1.5 sm:h-2 mt-2 rounded-full bg-purple-500 flex-shrink-0' />
                           <span className='text-sm sm:text-base text-gray-600'>
                             {topic}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {event.benefits && (
+                  <div className='bg-gray-50 rounded-xl p-4 sm:p-8'>
+                    <h3 className='text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6'>
+                      Benefits
+                    </h3>
+                    <ul className='space-y-3 sm:space-y-4'>
+                      {event.benefits.map((benefit, index) => (
+                        <li key={index} className='flex items-start space-x-3'>
+                          <span className='w-1.5 sm:w-2 h-1.5 sm:h-2 mt-2 rounded-full bg-yellow-500 flex-shrink-0' />
+                          <span className='text-sm sm:text-base text-gray-600'>
+                            {benefit}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {event.format && (
+                  <div className='bg-gray-50 rounded-xl p-4 sm:p-8'>
+                    <h3 className='text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6'>
+                      Event Format
+                    </h3>
+                    <ul className='space-y-3 sm:space-y-4'>
+                      {event.format.map((item, index) => (
+                        <li key={index} className='flex items-start space-x-3'>
+                          <span className='w-1.5 sm:w-2 h-1.5 sm:h-2 mt-2 rounded-full bg-indigo-500 flex-shrink-0' />
+                          <span className='text-sm sm:text-base text-gray-600'>
+                            {item}
                           </span>
                         </li>
                       ))}

@@ -1,265 +1,172 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 
-const Join = () => {
-  const [step, setStep] = useState(1);
+const SimpleJoinForm = () => {
   const [formData, setFormData] = useState({
     name: '',
+    id:'',
     email: '',
-    major: '',
-    yearOfStudy: '',
-    interests: '',
-    experience: '',
+    joinConfirmation: false,
   });
+  const [status, setStatus] = useState('');
 
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value,
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setStatus('Sending...');
+
+    const formSubmission = new FormData();
+    // Add access key
+    formSubmission.append('access_key', '6c089b37-eef1-4256-8a21-c8e5b2381c94');
+
+    // Add form fields
+    Object.entries(formData).forEach(([key, value]) => {
+      formSubmission.append(key, value);
+    });
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formSubmission,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('Thank you for your application! We will contact you soon.');
+        // Reset form
+        setFormData({
+          name: '',
+          id:'',
+          email: '',
+          joinConfirmation: false,
+        });
+      } else {
+        setStatus('Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      setStatus(
+        'Failed to submit. Please check your connection and try again.'
+      );
+    }
+  };
+
+  const handleChange = e => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    // Add form submission logic here
-    console.log('Form submitted:', formData);
-  };
+  return (
+    <div className='min-h-screen bg-gray-50 flex items-center justify-center -mt-20 md:mt-16 lg:mt-20 px-4 sm:px-6 lg:px-8'>
+      <div className='max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow'>
+        <div>
+          <h2 className='text-center text-3xl font-bold text-gray-900'>
+            Join MUN AUI
+          </h2>
+          <p className='mt-2 text-center text-gray-600'>
+            Fill out this form to join our community
+          </p>
+        </div>
 
-  const nextStep = () => setStep(step + 1);
-  const prevStep = () => setStep(step - 1);
-
-  const formVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
-    exit: { opacity: 0, x: 50, transition: { duration: 0.5 } },
-  };
-
-  const buttonVariants = {
-    hover: { scale: 1.05, transition: { duration: 0.2 } },
-    tap: { scale: 0.95, transition: { duration: 0.2 } },
-  };
-
-  const renderStep = () => {
-    switch (step) {
-      case 1:
-        return (
-          <motion.div
-            key='step1'
-            variants={formVariants}
-            initial='hidden'
-            animate='visible'
-            exit='exit'
-          >
-            <h2 className='text-2xl font-bold mb-4'>Personal Information</h2>
-            <div className='mb-4'>
+        <form onSubmit={handleSubmit} className='mt-8 space-y-6'>
+          <div className='space-y-4'>
+            <div>
               <label
                 htmlFor='name'
-                className='block text-sm font-medium text-gray-700 mb-1'
+                className='block text-sm font-medium text-gray-700'
               >
                 Full Name
               </label>
               <input
-                type='text'
                 id='name'
                 name='name'
-                value={formData.name}
-                onChange={handleInputChange}
+                type='text'
                 required
-                className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                value={formData.name}
+                onChange={handleChange}
+                className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500'
               />
             </div>
-            <div className='mb-4'>
+            <div>
+              <label
+                htmlFor='name'
+                className='block text-sm font-medium text-gray-700'
+              >
+                Your ID
+              </label>
+              <input
+                id='id'
+                name='id'
+                type='text'
+                required
+                value={formData.id}
+                onChange={handleChange}
+                className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500'
+              />
+            </div>
+
+            <div>
               <label
                 htmlFor='email'
-                className='block text-sm font-medium text-gray-700 mb-1'
+                className='block text-sm font-medium text-gray-700'
               >
-                Email
+                Email Address
               </label>
               <input
-                type='email'
                 id='email'
                 name='email'
+                type='email'
+                required
                 value={formData.email}
-                onChange={handleInputChange}
-                required
-                className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                onChange={handleChange}
+                className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500'
               />
             </div>
-          </motion.div>
-        );
-      case 2:
-        return (
-          <motion.div
-            key='step2'
-            variants={formVariants}
-            initial='hidden'
-            animate='visible'
-            exit='exit'
-          >
-            <h2 className='text-2xl font-bold mb-4'>Academic Information</h2>
-            <div className='mb-4'>
-              <label
-                htmlFor='major'
-                className='block text-sm font-medium text-gray-700 mb-1'
-              >
-                Major
-              </label>
+
+         
+
+            <div className='flex items-center'>
               <input
-                type='text'
-                id='major'
-                name='major'
-                value={formData.major}
-                onChange={handleInputChange}
+                id='joinConfirmation'
+                name='joinConfirmation'
+                type='checkbox'
                 required
-                className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                checked={formData.joinConfirmation}
+                onChange={handleChange}
+                className='h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded'
               />
-            </div>
-            <div className='mb-4'>
               <label
-                htmlFor='yearOfStudy'
-                className='block text-sm font-medium text-gray-700 mb-1'
+                htmlFor='joinConfirmation'
+                className='ml-2 block text-sm text-gray-700'
               >
-                Year of Study
+                I want to join AUI MUN
               </label>
-              <select
-                id='yearOfStudy'
-                name='yearOfStudy'
-                value={formData.yearOfStudy}
-                onChange={handleInputChange}
-                required
-                className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-              >
-                <option value=''>Select year</option>
-                <option value='1'>1st Year</option>
-                <option value='2'>2nd Year</option>
-                <option value='3'>3rd Year</option>
-                <option value='4'>4th Year</option>
-                <option value='5'>5th Year</option>
-              </select>
             </div>
-          </motion.div>
-        );
-      case 3:
-        return (
-          <motion.div
-            key='step3'
-            variants={formVariants}
-            initial='hidden'
-            animate='visible'
-            exit='exit'
-          >
-            <h2 className='text-2xl font-bold mb-4'>MUN Experience</h2>
-            <div className='mb-4'>
-              <label
-                htmlFor='interests'
-                className='block text-sm font-medium text-gray-700 mb-1'
-              >
-                Areas of Interest in MUN
-              </label>
-              <textarea
-                id='interests'
-                name='interests'
-                value={formData.interests}
-                onChange={handleInputChange}
-                required
-                rows='3'
-                className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                placeholder='e.g., International Security, Human Rights, Climate Change'
-              ></textarea>
-            </div>
-            <div className='mb-4'>
-              <label
-                htmlFor='experience'
-                className='block text-sm font-medium text-gray-700 mb-1'
-              >
-                Previous MUN Experience (if any)
-              </label>
-              <textarea
-                id='experience'
-                name='experience'
-                value={formData.experience}
-                onChange={handleInputChange}
-                rows='3'
-                className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-                placeholder='Describe any previous MUN experience or leave blank if none'
-              ></textarea>
-            </div>
-          </motion.div>
-        );
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div className='min-h-screen bg-white py-12 px-4 sm:px-6 lg:mt-12 -mt-16 lg:px-8 flex items-center'>
-      <div className='max-w-md w-full space-y-8 bg-white p-6 sm:p-10 rounded-xl shadow-2xl mx-auto'>
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className='text-4xl font-extrabold text-center text-gray-900 mb-2'>
-            Join MUN AUI
-          </h1>
-          <p className='text-center text-gray-600 mb-8'>
-            Become a part of our global diplomacy community
-          </p>
-        </motion.div>
-
-        <form onSubmit={handleSubmit} className='mt-8 space-y-6'>
-          <AnimatePresence mode='wait'>{renderStep()}</AnimatePresence>
-
-          <div className='flex justify-between mt-8'>
-            {step > 1 && (
-              <motion.button
-                type='button'
-                onClick={prevStep}
-                className='bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50'
-                variants={buttonVariants}
-                whileHover='hover'
-                whileTap='tap'
-              >
-                Previous
-              </motion.button>
-            )}
-            {step < 3 ? (
-              <motion.button
-                type='button'
-                onClick={nextStep}
-                className='bg-green-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50'
-                variants={buttonVariants}
-                whileHover='hover'
-                whileTap='tap'
-              >
-                Next
-              </motion.button>
-            ) : (
-              <motion.button
-                type='submit'
-                className='bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50'
-                variants={buttonVariants}
-                whileHover='hover'
-                whileTap='tap'
-              >
-                Submit Application
-              </motion.button>
-            )}
           </div>
-        </form>
 
-        <motion.div
-          className='mt-4 text-center text-sm text-gray-600'
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-        >
-          Step {step} of 3
-        </motion.div>
+          {status && (
+            <div
+              className={`text-center p-3 rounded-md ${
+                status.includes('thank you')
+                  ? 'bg-green-100 text-green-800'
+                  : 'bg-yellow-100 text-yellow-800'
+              }`}
+            >
+              {status}
+            </div>
+          )}
+
+          <button
+            type='submit'
+            className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none'
+          >
+            Submit Form
+          </button>
+        </form>
       </div>
     </div>
   );
 };
 
-export default Join;
+export default SimpleJoinForm;

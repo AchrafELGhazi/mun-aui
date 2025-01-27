@@ -6,7 +6,7 @@ export const events = [
       'Our flagship event bringing together delegates from around the world.',
     longDescription:
       'Join us for our prestigious Annual Conference, where delegates from across the globe gather to discuss pressing international issues, share insights, and build lasting connections. The conference features keynote speakers, panel discussions, workshops, and networking opportunities.',
-    image: '/33.jpg',
+    image: '/events/1-2.webp',
     color: 'from-blue-400 to-blue-600',
     date: 'To be announced',
     location: 'Al Akhawayn University',
@@ -51,7 +51,7 @@ export const events = [
     description: 'Represent AUI and Morocco in international events abroad.',
     longDescription:
       'Be part of international conferences representing Al Akhawayn University and Morocco. These events provide a platform for collaboration, knowledge sharing, and showcasing Morocco’s potential in global discussions.',
-    image: '/7.jpg',
+    image: '/events/3-1.webp',
     color: 'from-red-400 to-red-600',
     date: 'At least one per semester',
     location: 'Turkey, Qatar, France, and more',

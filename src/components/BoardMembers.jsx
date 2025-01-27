@@ -89,7 +89,7 @@ const BoardMembers = () => {
             }}
             className='inline-block bg-[#1a5632] text-white font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-full hover:bg-green-600 transition-colors duration-300 text-sm sm:text-base'
           >
-            Join MUN AUI
+            Join AUI MUN
           </Link>
         </div>
       </div>

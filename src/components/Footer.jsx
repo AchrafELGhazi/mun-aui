@@ -5,7 +5,6 @@ import {
   FaFacebookF,
   FaInstagram,
   FaEnvelope,
-  FaPhone,
   FaMapMarkerAlt,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -19,84 +18,95 @@ const Footer = () => {
   });
 
   const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: 'easeOut',
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.6,
         ease: 'easeOut',
       },
     },
   };
 
+  const socialLinks = [
+    {
+      icon: FaFacebookF,
+      href: 'https://www.facebook.com/AUIMUN/',
+      label: 'Facebook',
+    },
+    {
+      icon: SiThreads,
+      href: 'https://www.threads.net/@aui_mun',
+      label: 'Threads',
+    },
+    {
+      icon: FaInstagram,
+      href: 'https://www.instagram.com/aui_mun/',
+      label: 'Instagram',
+    },
+    {
+      icon: FaLinkedinIn,
+      href: 'https://www.linkedin.com/company/auimun/posts/?feedView=all',
+      label: 'LinkedIn',
+    },
+  ];
+
+  const quickLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Apply', path: '/Apply' },
+    { name: 'Join', path: '/Join' },
+  ];
+
   return (
     <motion.footer
       ref={ref}
-      className='bg-gradient-to-br from-white to-green-50 backdrop-blur-lg pt-16 pb-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden'
+      className='bg-gradient-to-b from-white to-green-50 pt-12 pb-6 px-4 sm:px-6 lg:px-8'
       initial='hidden'
       animate={inView ? 'visible' : 'hidden'}
       variants={containerVariants}
     >
-      <div className='absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#1a5632] to-transparent' />
-      <div className='max-w-7xl mx-auto'>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
-          <motion.div variants={itemVariants}>
-            <h3 className='text-lg font-semibold text-green-700 mb-4 pb-2 border-b-2 border-green-500 inline-block'>
-              About MUN AUI
-            </h3>
-            <p className='text-gray-600 mb-4'>
-              Model United Nations at Al Akhawayn University fosters global
-              awareness, critical thinking, and leadership through engaging UN
-              simulations.
+      <div className='max-w-6xl mx-auto'>
+        <div className='flex flex-wrap justify-between items-start gap-8'>
+          {/* Logo and Description */}
+          <div className='w-full md:w-auto max-w-xs'>
+            <img src='/mun1.png' alt='MUN AUI Logo' className='h-16 mb-4' />
+            <p className='text-sm text-gray-600'>
+              Fostering global awareness, critical thinking, and leadership
+              through engaging UN simulations.
             </p>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <h3 className='text-lg font-semibold text-green-700 mb-4 pb-2 border-b-2 border-green-500 inline-block'>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className='text-lg font-semibold text-green-700 mb-4'>
               Quick Links
             </h3>
             <ul className='space-y-2'>
-              {[
-                { name: 'Home', path: '/' },
-                { name: 'Apply', path: '/Apply' },
-                { name: 'Join', path: '/Join' },
-              ].map(item => (
+              {quickLinks.map(item => (
                 <li key={item.name}>
                   <Link
                     to={item.path}
-                    className='text-gray-600 hover:text-green-700 transition-colors duration-300'
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                    }}
+                    className='text-sm text-gray-600 hover:text-green-700 transition-colors duration-300'
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <h3 className='text-lg font-semibold text-green-700 mb-4 pb-2 border-b-2 border-green-500 inline-block'>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className='text-lg font-semibold text-green-700 mb-4'>
               Contact Us
             </h3>
             <ul className='space-y-2'>
               <li>
                 <a
                   href='mailto:modelun@aui.ma'
-                  className='text-gray-600 hover:text-green-700 transition-colors duration-300 flex items-center'
+                  className='text-sm text-gray-600 hover:text-green-700 transition-colors duration-300 flex items-center'
                 >
                   <FaEnvelope className='mr-2' />
                   modelun@aui.ma
@@ -104,73 +114,44 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href='tel:+212535586000'
-                  className='text-gray-600 hover:text-green-700 transition-colors duration-300 flex items-center'
-                >
-                  <FaPhone className='mr-2' />
-                  +212 5355-86000
-                </a>
-              </li>
-              <li>
-                <a
                   href='https://goo.gl/maps/AUIcampus'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='text-gray-600 hover:text-green-700 transition-colors duration-300 flex items-center'
+                  className='text-sm text-gray-600 hover:text-green-700 transition-colors duration-300 flex items-center'
                 >
                   <FaMapMarkerAlt className='mr-2' />
                   Al Akhawayn University, Ifrane
                 </a>
               </li>
             </ul>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <h3 className='text-lg font-semibold text-green-700 mb-4 pb-2 border-b-2 border-green-500 inline-block'>
+          </div>
+
+          {/* Social Links */}
+          <div>
+            <h3 className='text-lg font-semibold text-green-700 mb-4'>
               Connect With Us
             </h3>
             <div className='flex space-x-4'>
-              {[
-                {
-                  icon: FaFacebookF,
-                  href: 'https://www.facebook.com/AUIMUN/',
-                  label: 'Facebook',
-                },
-                {
-                  icon: SiThreads,
-                  href: 'https://www.threads.net/@aui_mun',
-                  label: 'Threads',
-                },
-                {
-                  icon: FaInstagram,
-                  href: 'https://www.instagram.com/aui_mun/',
-                  label: 'Instagram',
-                },
-                {
-                  icon: FaLinkedinIn,
-                  href: 'https://www.linkedin.com/company/auimun/posts/?feedView=all',
-                  label: 'LinkedIn',
-                },
-              ].map(social => (
+              {socialLinks.map(social => (
                 <a
                   key={social.label}
                   href={social.href}
                   target='_blank'
                   rel='noopener noreferrer'
                   aria-label={social.label}
-                  className='bg-white p-3 rounded-full shadow-md hover:shadow-lg transition-shadow duration-300 hover:text-green-700'
+                  className='bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:text-green-700 hover:scale-110'
                 >
                   <social.icon className='w-5 h-5' />
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
-        <motion.div
-          className='mt-8 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm'
-          variants={itemVariants}
-        >
+
+        {/* Copyright */}
+        <div className='mt-8 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm'>
           © {new Date().getFullYear()} MUN AUI. All rights reserved.
-        </motion.div>
+        </div>
       </div>
     </motion.footer>
   );

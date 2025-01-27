@@ -48,7 +48,7 @@ const HeroSection = () => {
               it has grown into one of the largest and most prestigious MUN
               conferences in the country, bringing together passionate delegates
               to debate global issues, develop leadership skills, and build
-              lasting connections. Join us in shaping the leaders of tomorrow!
+              lasting connections. Join us in shaping the leaders of tomorrow !
             </p>
 
             <div className='flex flex-row gap-2 justify-center lg:justify-start'>
